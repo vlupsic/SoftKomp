@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    runtimeOnly("com.mysql:mysql-connector-j:8.4.0")
 }
 
 tasks.test {
