@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    implementation(project(":specifikacija"))
 }
 
 tasks.test {
@@ -26,7 +27,7 @@ publishing {
             from(components["java"]) // If you're using the 'java' or 'kotlin' plugin
 
             groupId = "org.example"
-            artifactId = "kalkulacije"
+            artifactId = "CSVImplementation"
             version = "1.0.0"
         }
     }

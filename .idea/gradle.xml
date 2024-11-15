@@ -6,13 +6,17 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="$USER_HOME$/Downloads/gradle-8.5" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../gradle-8.5" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/TXTImplementacija" />
+            <option value="$PROJECT_DIR$/CSVImplementation" />
+            <option value="$PROJECT_DIR$/EXCELImplementation" />
+            <option value="$PROJECT_DIR$/PDFImplementation" />
+            <option value="$PROJECT_DIR$/TXTImplementation" />
             <option value="$PROJECT_DIR$/kalkulacije" />
             <option value="$PROJECT_DIR$/specifikacija" />
+            <option value="$PROJECT_DIR$/testApp" />
           </set>
         </option>
       </GradleProjectSettings>

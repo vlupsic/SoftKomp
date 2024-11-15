@@ -4,4 +4,9 @@ plugins {
 rootProject.name = "SoftKompProject"
 include("specifikacija")
 include("kalkulacije")
-include("TXTImplementacija")
+include("TXTImplementation")
+include("testApp")
+include("CSVImplementation")
+include("EXCELImplementation")
+include("PDFImplementation")
+

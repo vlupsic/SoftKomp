@@ -1,8 +1,11 @@
-package txt
+package excel
 
 import org.example.specifikacija.IzvestajInterface
 
-class TxtReportImplementacija(override val implementacija: String = "TXT", override val formating: Boolean = false) : IzvestajInterface {
+class ExcelIzvestajImpl() : IzvestajInterface {
+
+    override val implementacija: String = "EXCEL"
+    override val formating: Boolean = true
 
     override fun generisiIzvestaj(
         podaci: Map<String, List<String>>,
@@ -17,6 +20,4 @@ class TxtReportImplementacija(override val implementacija: String = "TXT", overr
     override fun generisiSummary(podaci: Map<String, List<String>>, destinacija: String, naslov: String?) {
         TODO("Not yet implemented")
     }
-
-
 }
