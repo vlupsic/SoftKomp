@@ -13,7 +13,8 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.librepdf:openpdf:1.3.29")
+    implementation ("com.itextpdf:html2pdf:3.0.4")
+    implementation("com.google.code.gson:gson:2.10.1")
     testImplementation(kotlin("test"))
     implementation(project(":specifikacija"))
 }
