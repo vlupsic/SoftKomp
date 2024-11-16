@@ -104,24 +104,29 @@ class KalkImpl : KalkInterface {
 
     override fun sum(kolona : MutableList<String>?, uslov: String?, uslovValue: String?, koeficijent : Int?): String {
         var suma = 0.0f
+        println("Usao")
+        println("Kolona" + kolona.toString())
+        println("Uslov: " + uslov)
+        println("Value: " + uslovValue + "\nKoef: " + koeficijent + "\n ")
 
         val condition = uslovValue?.toIntOrNull()
         if (uslovValue != null && condition != null) {
-            if (uslovValue.equals(Uslov.VECE)){
+            if (uslov.equals(Uslov.VECE.znak)){
+                println("VECCEE")
                 if (kolona != null)
                     for(value in kolona){
                         val provera = value.toFloatOrNull()
                         if (provera!=null && provera > condition)
                             suma += value.toFloatOrNull()?: 0.0f
                     }
-            }else if (uslovValue.equals(Uslov.MANJE)){
+            }else if (uslov.equals(Uslov.MANJE.znak)){
                 if (kolona != null)
                     for(value in kolona){
                         val provera = value.toFloatOrNull()
                         if (provera!=null && provera < condition)
                             suma += value.toFloatOrNull()?: 0.0f
                     }
-            }else if (uslovValue.equals(Uslov.JEDNAKO)){
+            }else if (uslov.equals(Uslov.JEDNAKO.znak)){
                 if (kolona != null)
                     for(value in kolona){
                         val provera = value.toFloatOrNull()
@@ -139,6 +144,7 @@ class KalkImpl : KalkInterface {
 
         if (koeficijent != null) suma += koeficijent
 
+        println(suma)
         return suma.toString()
 
     }
@@ -149,21 +155,21 @@ class KalkImpl : KalkInterface {
         val condition = uslovValue?.toIntOrNull()
 
         if (uslovValue != null && condition != null) {
-            if (uslovValue.equals(Uslov.VECE)) {
+            if (uslov.equals(Uslov.VECE.znak)) {
                 if (kolona != null)
                     for (value in kolona) {
                         val provera = value.toFloatOrNull()
                         if (provera != null && provera > condition)
                             suma += value.toFloatOrNull() ?: 0.0f
                     }
-            } else if (uslovValue.equals(Uslov.MANJE)) {
+            } else if (uslov.equals(Uslov.MANJE.znak)) {
                 if (kolona != null)
                     for (value in kolona) {
                         val provera = value.toFloatOrNull()
                         if (provera != null && provera < condition)
                             suma += value.toFloatOrNull() ?: 0.0f
                     }
-            } else if (uslovValue.equals(Uslov.JEDNAKO)) {
+            } else if (uslov.equals(Uslov.JEDNAKO.znak)) {
                 if (kolona != null)
                     for (value in kolona) {
                         val provera = value.toFloatOrNull()
@@ -189,21 +195,21 @@ class KalkImpl : KalkInterface {
 
         val condition = uslovValue?.toIntOrNull()
         if (uslovValue != null && condition != null) {
-            if (uslovValue.equals(Uslov.VECE)){
+            if (uslov.equals(Uslov.VECE.znak)){
                 if (kolona != null)
                     for(value in kolona){
                         val provera = value.toFloatOrNull()
                         if (provera!=null && provera > condition)
                             brojac++
                     }
-            }else if (uslovValue.equals(Uslov.MANJE)){
+            }else if (uslov.equals(Uslov.MANJE.znak)){
                 if (kolona != null)
                     for(value in kolona){
                         val provera = value.toFloatOrNull()
                         if (provera!=null && provera < condition)
                             brojac++
                     }
-            }else if (uslovValue.equals(Uslov.JEDNAKO)){
+            }else if (uslov.equals(Uslov.JEDNAKO.znak)){
                 if (kolona != null)
                     for(value in kolona){
                         val provera = value.toFloatOrNull()
