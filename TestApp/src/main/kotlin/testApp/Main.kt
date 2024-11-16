@@ -14,5 +14,24 @@ fun main(){
         exporterServices[service.implementacija] = service
     }
 
-    println("ovo su servisi: " + exporterServices.keys)
+        println("Dostupni formati: " + exporterServices.keys)
+
+        val format = readLine()?.trim()?.uppercase()
+        if(format == "EXIT"){
+            println("Gasenje programa")
+            break
+        }
+
+        val izvestajInterface = exporterServices[format]
+
+        println("SQL upit: ")
+        val sql = readLine()
+        val query = connection?.prepareStatement(sql)
+        val resultSet = query?.executeQuery()
+
+    }
+
+    if (connection != null) {
+        connection.close()
+    }
 }
