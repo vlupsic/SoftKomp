@@ -10,8 +10,6 @@ interface IzvestajInterface {
 
     fun generisiIzvestaj(podaci: Map<String, List<String>>, destinacija: String, header: Boolean, naslov: String? = null, summary: String? = null)
 
-    fun generisiSummary(podaci: Map<String, List<String>>, destinacija: String, naslov: String? = null)
-
     fun generisiIzvestaj(podaci: ResultSet, destinacija: String, header: Boolean, naslov: String? = null, summary: String? = null){
         val pripremljeniPodaci = pripremiPodatke(podaci)
         generisiIzvestaj(pripremljeniPodaci, destinacija, header, naslov, summary)

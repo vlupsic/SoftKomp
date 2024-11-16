@@ -1,8 +1,9 @@
 package csv
 
 import org.example.specifikacija.IzvestajInterface
+import java.io.File
 
-class CsvIzvestajImpl() : IzvestajInterface {
+class CsvIzvestajImpl : IzvestajInterface {
 
     override val implementacija: String = "CSV"
     override val formating: Boolean = false
@@ -14,11 +15,20 @@ class CsvIzvestajImpl() : IzvestajInterface {
         naslov: String?,
         summary: String?
     ) {
-        TODO("Not yet implemented")
+        val kolone = podaci.keys.toList()
+        val vrste = podaci.values.first().size
+
+        File(destinacija).printWriter().use{ writer ->
+            if (header)
+                writer.println(kolone.joinToString(","))
+            for(i in 0 until vrste) {
+                val vrsta = kolone.map{
+                    kolona -> podaci[kolona]?.get(i) ?: ""
+                }
+                writer.println(vrsta.joinToString(","))
+            }
+        }
     }
 
-    override fun generisiSummary(podaci: Map<String, List<String>>, destinacija: String, naslov: String?) {
-        TODO("Not yet implemented")
-    }
 
 }

@@ -17,7 +17,4 @@ class ExcelIzvestajImpl() : IzvestajInterface {
         TODO("Not yet implemented")
     }
 
-    override fun generisiSummary(podaci: Map<String, List<String>>, destinacija: String, naslov: String?) {
-        TODO("Not yet implemented")
-    }
 }
