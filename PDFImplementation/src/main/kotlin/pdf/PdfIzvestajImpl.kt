@@ -5,6 +5,7 @@ import com.lowagie.text.pdf.PdfPCell
 import com.lowagie.text.pdf.PdfPTable
 import com.lowagie.text.pdf.PdfWriter
 import org.example.specifikacija.IzvestajInterface
+import java.io.File
 import java.io.FileOutputStream
 
 class PdfIzvestajImpl() : IzvestajInterface{
@@ -13,11 +14,12 @@ class PdfIzvestajImpl() : IzvestajInterface{
     override val formating: Boolean = true
 
     override fun generisiIzvestaj(
-        podaci: Map<String, List<String>>,
+        podaci: MutableMap<String, MutableList<String>>,
         destinacija: String,
         header: Boolean,
         naslov: String?,
-        summary: String?
+        summary: String?,
+        fajl: File
     ) {
         val document = Document()
         PdfWriter.getInstance(document, FileOutputStream(destinacija))

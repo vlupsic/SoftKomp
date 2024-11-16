@@ -2,31 +2,17 @@ package specifikacija
 
 interface KalkInterface {
 
-    fun zbir(novaKolona : String, lista : MutableList<String>) : String{
-        return ""
-    }
+    fun zbir(novaKolona : String?, lista : List<List<Double?>>, koeficijent : Int?) : MutableMap<String,MutableList<String>>
 
-    fun mnozenje(novaKolona : String, lista : MutableList<String>): String{
-        return ""
-    }
+    fun mnozenje(novaKolona : String?, lista : List<List<Double?>>, koeficijent : Int?): MutableMap<String,MutableList<String>>
 
-    fun razlika(novaKolona : String, kolona1 : List<String>, kolona2 : List<String>) : String{
-        return ""
-    }
+    fun razlika(novaKolona : String?, kolona1 : List<Double?>, kolona2 : List<Double?>, koeficijent : Int?) : MutableMap<String,MutableList<String>>
 
-    fun deljenje(novaKolona : String, kolona1 : List<String>, kolona2 : List<String>) : String{
-        return ""
-    }
+    fun deljenje(novaKolona : String?, kolona1 : List<Double?>, kolona2 : List<Double?>, koeficijent : Int?) : MutableMap<String,MutableList<String>>
 
-    fun sum(kolona : List<String>) : Float {
-        return 0f
-    }
+    fun sum(kolona : MutableList<String>?, uslov: String?, uslovValue: String?, koeficijent : Int?) : String
 
-    fun average(kolona : List<String>) : Float {
-        return 0f
-    }
+    fun average(kolona : MutableList<String>?, uslov: String?, uslovValue: String?, koeficijent : Int?) : String
 
-    fun count(kolona: List<String>) : Int {
-        return 0
-    }
+    fun count(kolona: MutableList<String>?, uslov: String?, uslovValue: String?) : String
 }

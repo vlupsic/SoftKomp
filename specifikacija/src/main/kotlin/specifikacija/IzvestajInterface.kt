@@ -1,5 +1,6 @@
 package org.example.specifikacija
 
+import java.io.File
 import java.sql.ResultSet
 import java.sql.ResultSetMetaData
 
@@ -8,14 +9,14 @@ interface IzvestajInterface {
     abstract val implementacija: String
     abstract val formating: Boolean
 
-    fun generisiIzvestaj(podaci: Map<String, List<String>>, destinacija: String, header: Boolean, naslov: String? = null, summary: String? = null)
+    fun generisiIzvestaj(podaci: MutableMap<String, MutableList<String>>, destinacija: String, header: Boolean, naslov: String? = null, summary: String? = null, fajl: File)
 
-    fun generisiIzvestaj(podaci: ResultSet, destinacija: String, header: Boolean, naslov: String? = null, summary: String? = null){
+    fun generisiIzvestaj(podaci: ResultSet, destinacija: String, header: Boolean, naslov: String? = null, summary: String? = null, fajl: File){
         val pripremljeniPodaci = pripremiPodatke(podaci)
-        generisiIzvestaj(pripremljeniPodaci, destinacija, header, naslov, summary)
+        generisiIzvestaj(pripremljeniPodaci, destinacija, header, naslov, summary, fajl)
     }
 
-    private fun pripremiPodatke(resultSet: ResultSet): Map<String, List<String>> {
+    private fun pripremiPodatke(resultSet: ResultSet): MutableMap<String, MutableList<String>> {
         val podaci = mutableMapOf<String, MutableList<String>>()
 
         val metaPodaci: ResultSetMetaData = resultSet.metaData

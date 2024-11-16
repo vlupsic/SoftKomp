@@ -4,7 +4,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import java.io.File
 
-internal fun mrtviJson(podaci: MutableMap<String, MutableList<String>>, toParse: File): String{
+fun mrtviJson(podaci: MutableMap<String, MutableList<String>>, toParse: File): String{
     val mapper =  jacksonObjectMapper()
     val fajl = mapper.readValue<Kalkulacije>(toParse)
     val KalkInterface = KalkImpl();

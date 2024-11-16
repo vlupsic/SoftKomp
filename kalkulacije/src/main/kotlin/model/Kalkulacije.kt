@@ -16,8 +16,8 @@ data class KalkulacijeEpilog(
 )
 
 data class KalkulacijeKolona(
-    val naslov: String?,
-    val operacija: String?,
+    val naslov: String? = null,
+    val operacija: String? = null,
     val koeficijent: String? = null,
     val sadrzaj: List<String>
 )

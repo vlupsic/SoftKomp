@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    runtimeOnly("com.mysql:mysql-connector-j:8.4.0")
     implementation(project(":specifikacija"))
     runtimeOnly(project(":CSVImplementation"))
     runtimeOnly(project(":PDFImplementation"))

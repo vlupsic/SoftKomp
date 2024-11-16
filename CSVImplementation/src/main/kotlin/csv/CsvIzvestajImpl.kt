@@ -9,11 +9,12 @@ class CsvIzvestajImpl : IzvestajInterface {
     override val formating: Boolean = false
 
     override fun generisiIzvestaj(
-        podaci: Map<String, List<String>>,
+        podaci: MutableMap<String, MutableList<String>>,
         destinacija: String,
         header: Boolean,
         naslov: String?,
-        summary: String?
+        summary: String?,
+        fajl: File
     ) {
         val kolone = podaci.keys.toList()
         val vrste = podaci.values.first().size

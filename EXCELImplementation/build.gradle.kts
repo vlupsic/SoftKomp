@@ -15,6 +15,8 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     implementation(project(":specifikacija"))
+    implementation("org.apache.poi:poi:5.2.3") // For .xls format
+    implementation("org.apache.poi:poi-ooxml:5.2.3") // For .xlsx format
 }
 
 tasks.test {

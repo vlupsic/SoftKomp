@@ -1,8 +1,8 @@
 package txt
 
+import model.mrtviJson
 import org.example.specifikacija.IzvestajInterface
 import java.io.File
-
 
 class TxtIzvestajImpl() : IzvestajInterface {
 
@@ -10,14 +10,17 @@ class TxtIzvestajImpl() : IzvestajInterface {
     override val formating: Boolean = false
 
     override fun generisiIzvestaj(
-        podaci: Map<String, List<String>>,
+        podaci: MutableMap<String, MutableList<String>>,
         destinacija: String,
         header: Boolean,
         naslov: String?,
-        summary: String?
+        summary: String?,
+        fajl: File
     ) {
         val kolone = podaci.keys.toList()
         val redovi = podaci.values.first().size
+
+        val nesto = mrtviJson(podaci, fajl)
 
         val sirineKolona = kolone.map{ kolona->
             val maxSirina = podaci[kolona]?.maxOfOrNull { it.length } ?: 0
@@ -48,7 +51,7 @@ class TxtIzvestajImpl() : IzvestajInterface {
                 writer.println()
             }
 
-            summary?.let {
+            nesto?.let {
                 writer.println()
                 writer.println(it)
             }

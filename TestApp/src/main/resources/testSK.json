@@ -1,0 +1,12 @@
+{
+   "epilog":[
+       {
+           "naslov": "Nesto",
+           "operacija": "sumiraj",
+           "kolona": "streams",
+           "uslov": ">",
+           "uslovValue": "1000",
+           "sadrzaj": "plee plee ploo",
+           "koeficijent": "0"
+       }]
+}
