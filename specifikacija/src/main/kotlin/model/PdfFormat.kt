@@ -1,15 +1,15 @@
 package model
 
 
-data class Format(
-    val naslov: Title,
-    val header: Header,
-    val podaci: Data,
+data class PdfFormat(
+    val naslov: PdfTitle,
+    val header: PdfHeader,
+    val podaci: PdfData,
     val kolone : List<String>,
-    val summary: Summary
+    val summary: PdfSummary
 )
 
-data class Title(
+data class PdfTitle(
     val bold: Boolean,
     val italic: Boolean,
     val fontSize: Int,
@@ -17,7 +17,7 @@ data class Title(
     val alignment: String
 )
 
-data class Header(
+data class PdfHeader(
     val bold: Boolean,
     val italic: Boolean,
     val fontSize: Int,
@@ -29,7 +29,7 @@ data class Header(
     val borderWidth: String
 )
 
-data class Data(
+data class PdfData(
     val bold: Boolean,
     val italic: Boolean,
     val fontSize: Int,
@@ -39,7 +39,7 @@ data class Data(
     val borderColor: String,
 )
 
-data class Summary(
+data class PdfSummary(
     val bold: Boolean,
     val italic: Boolean,
     val fontSize: Int,

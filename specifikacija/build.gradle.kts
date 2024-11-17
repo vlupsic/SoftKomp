@@ -15,6 +15,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     implementation("com.fasterxml.jackson.core:jackson-databind:2.0.1")
+    implementation("com.google.code.gson:gson:2.10.1")
     runtimeOnly("com.mysql:mysql-connector-j:8.4.0")
     implementation(project(":kalkulacije"))
 }
