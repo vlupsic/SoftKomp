@@ -3,33 +3,27 @@
      "bold": true,
      "italic": true,
      "fontSize": 25,
-     "color": "#FFFF00",
      "alignment": "center"
   },
   "header": {
      "bold": true,
      "italic": false,
-     "fontSize": 18,
+     "fontSize": 7,
      "underline": true,
-     "color": "#FFFF00",
      "alignment": "center",
-     "borderStyle": "dashed",
-     "borderColor": "#7fffd4"
+     "borderStyle": "dashed"
   },
   "podaci": {
      "bold": false,
      "italic": true,
      "fontSize": 13,
-     "color": "#FFFF00",
      "alignment": "right",
-     "borderStyle": "dotted",
-     "borderColor": "#7fffd4"
+     "borderStyle": "dotted"
   },
   "summary": {
      "bold": true,
      "italic": false,
      "fontSize": 20,
-     "color": "#0000FF",
      "underline": 120
   },
   "kolone": ["idpesme", "naziv", "album"]

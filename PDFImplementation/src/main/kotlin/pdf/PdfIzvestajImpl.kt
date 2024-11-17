@@ -33,16 +33,16 @@ class PdfIzvestajImpl() : IzvestajInterface {
 
     }
 
-    private fun formatConf(conf: File): PdfFormat? {
-        return try {
-            val gson = Gson()
+    internal fun formatConf(conf: File): PdfFormat? {
+       return try {
+           val gson = Gson()
 
             conf.reader().use { reader ->
                 gson.fromJson(reader, PdfFormat::class.java)
             }
         }catch (e:Exception){
             println("Error loading config file: ${e.message}")
-            null
+            return null
         }
     }
 
@@ -107,11 +107,7 @@ class PdfIzvestajImpl() : IzvestajInterface {
                 } ?: ""
                 builder.append("<tr>")
                 podaci.keys.forEach { kolona ->
-                    //if(kolone.contains(kolona)) {
                     builder.append("<th style='$headerStyle'>$kolona</th>")
-                    //}else{
-                    //   builder.append("<th>$kolona</th>")
-                    //}
                 }
                 builder.append("</tr>")
             }

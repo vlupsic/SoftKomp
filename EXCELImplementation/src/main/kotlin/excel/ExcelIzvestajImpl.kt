@@ -90,7 +90,7 @@ class ExcelIzvestajImpl() : IzvestajInterface {
         summary: String?,
         format: ExcelFormat?
     ) :Workbook{
-        //try {
+        try {
             val workbook: Workbook = XSSFWorkbook()
             val sheet: Sheet = workbook.createSheet("Report")
 
@@ -108,7 +108,8 @@ class ExcelIzvestajImpl() : IzvestajInterface {
                             bold = format.naslov.bold
                             italic = format.naslov.italic
                             fontHeightInPoints = format.naslov.fontSize.toShort()
-                           // color = format.naslov.color.toShort()
+                            wrapText = true
+                           /*// color = format.naslov.color.toShort()
                             if (this is XSSFFont && workbook is XSSFWorkbook) {
                                 val color = Color.decode(format.naslov.color)
                                 this.setColor(
@@ -117,8 +118,7 @@ class ExcelIzvestajImpl() : IzvestajInterface {
                                         workbook.stylesSource.indexedColors
                                     )
                                 )
-                            }
-                            println("Preziveo")
+                            }*/
                         }
                     }
                     this.setFont(titleFont)
@@ -128,15 +128,15 @@ class ExcelIzvestajImpl() : IzvestajInterface {
             if (header) {
                 val headerRow: Row = sheet.createRow(1)
                 podaci.keys.forEachIndexed { index, columnName ->
-                    headerRow.createCell(index).setCellValue(columnName)
-                    headerRow.rowStyle = workbook.createCellStyle().apply {
+
+                    val headerStyle = workbook.createCellStyle().apply {
                         val redFont = workbook.createFont().apply {
                             if (format != null) {
                                 bold = format.header.bold
                                 italic = format.header.italic
                                 underline = if (format.header.underline) Font.U_SINGLE else Font.U_NONE
-                                fontHeight = format.header.fontSize.toShort()
-                                //color = format.header.color.toShort()
+
+                                /*//color = format.header.color.toShort()
                                 if (this is XSSFFont && workbook is XSSFWorkbook) {
                                     val color = Color.decode(format.header.color.toString())
                                     this.setColor(
@@ -145,20 +145,25 @@ class ExcelIzvestajImpl() : IzvestajInterface {
                                             workbook.stylesSource.indexedColors
                                         )
                                     )
-                                }
+                                }*/
                                 borderTop = stringToBorderStyle(format.header.borderStyle)
                                 borderRight = stringToBorderStyle(format.header.borderStyle)
                                 borderLeft = stringToBorderStyle(format.header.borderStyle)
                                 borderBottom = stringToBorderStyle(format.header.borderStyle)
-                                topBorderColor = format.header.borderColor.toShort()
+                             /*   topBorderColor = format.header.borderColor.toShort()
                                 leftBorderColor = format.header.borderColor.toShort()
                                 rightBorderColor = format.header.borderColor.toShort()
-                                bottomBorderColor = format.header.borderColor.toShort()
+                                bottomBorderColor = format.header.borderColor.toShort()*/
                                 alignment = stringToAlignment(format.header.alignment)
+                                fontHeight = format.header.fontSize.toShort()
+                                wrapText = true
                             }
                         }
                         this.setFont(redFont)
                     }
+                    val cell = headerRow.createCell(index)
+                    cell.setCellValue(columnName)
+                    cell.cellStyle = headerStyle
                     if (sheet.getColumnWidth(index) < columnName.length * 260)
                         sheet.setColumnWidth(index, columnName.length)
                 }
@@ -169,14 +174,15 @@ class ExcelIzvestajImpl() : IzvestajInterface {
                 val dataRow: Row = sheet.createRow(if (header) i + 2 else i + 1)
 
                 podaci.keys.forEachIndexed { index, columnName ->
-                    dataRow.createCell(index).setCellValue(podaci[columnName]?.get(i) ?: "")
-                    dataRow.rowStyle = workbook.createCellStyle().apply {
+                    val cell = dataRow.createCell(index)
+                    cell.setCellValue(podaci[columnName]?.get(i) ?: "")
+                    val stil = workbook.createCellStyle().apply {
                         val redFont = workbook.createFont().apply {
                             if (format != null) {
                                 bold = format.podaci.bold
                                 italic = format.podaci.italic
-                                fontHeight = format.podaci.fontSize.toShort()
-                                //color = format.podaci.color.toShort()
+
+                                /*//color = format.podaci.color.toShort()
                                 if (this is XSSFFont && workbook is XSSFWorkbook) {
                                     val color = Color.decode(format.podaci.color.toString())
                                     this.setColor(
@@ -185,28 +191,29 @@ class ExcelIzvestajImpl() : IzvestajInterface {
                                             workbook.stylesSource.indexedColors
                                         )
                                     )
-                                }
+                                }*/
                                 alignment = stringToAlignment(format.podaci.alignment)
                                 borderTop = stringToBorderStyle(format.podaci.borderStyle)
                                 borderRight = stringToBorderStyle(format.podaci.borderStyle)
                                 borderLeft = stringToBorderStyle(format.podaci.borderStyle)
                                 borderBottom = stringToBorderStyle(format.podaci.borderStyle)
-                                topBorderColor = format.podaci.borderColor.toShort()
+                               /* topBorderColor = format.podaci.borderColor.toShort()
                                 leftBorderColor = format.podaci.borderColor.toShort()
                                 rightBorderColor = format.podaci.borderColor.toShort()
-                                bottomBorderColor = format.podaci.borderColor.toShort()
+                                bottomBorderColor = format.podaci.borderColor.toShort()*/
+                                fontHeight = format.podaci.fontSize.toShort()
                             }
                         }
                         this.setFont(redFont)
                     }
                     if (sheet.getColumnWidth(index) < (podaci[columnName]?.get(i)?.length ?: 20) * 260)
                         sheet.setColumnWidth(index, (podaci[columnName]?.get(i)?.length ?: 20) * 260)
+                    cell.cellStyle = stil
                 }
             }
             summary?.let {
                 val summaryRow: Row = sheet.createRow(numRows + 2)
                 val summaryCell: Cell = summaryRow.createCell(0)
-                summaryCell.cellStyle.wrapText = true
                 summaryCell.setCellValue("Summary: $summary")
                 sheet.setColumnWidth(0, summary.length * 100)
                 val summaryStyle = workbook.createCellStyle().apply {
@@ -215,7 +222,7 @@ class ExcelIzvestajImpl() : IzvestajInterface {
                             bold = format.summary.bold
                             italic = format.summary.italic
                             fontHeight = format.summary.fontSize.toShort()
-                            //color = format.summary.color.toShort()
+                            /*//color = format.summary.color.toShort()
                             if (this is XSSFFont && workbook is XSSFWorkbook) {
                                 val color = Color.decode(format.summary.color.toString())
                                 this.setColor(
@@ -224,7 +231,7 @@ class ExcelIzvestajImpl() : IzvestajInterface {
                                         workbook.stylesSource.indexedColors
                                     )
                                 )
-                            }
+                            }*/
                             underline = format.summary.underline
                             wrapText = true
                         }
@@ -232,16 +239,15 @@ class ExcelIzvestajImpl() : IzvestajInterface {
                     this.setFont(sumFont)
                 }
                 summaryCell.cellStyle = summaryStyle
-                summaryStyle.wrapText = true
             }
 
 
 
             return workbook
-        /*}catch (e : Exception){
+        }catch (e : Exception){
             println("Error while exporting Excel Report: " + e.message)
             exitProcess(1)
-        }*/
+        }
     }
 
 }

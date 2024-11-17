@@ -10,7 +10,7 @@ class KalkImpl : KalkInterface {
     ): MutableList<String> {
         val stringovi = mutableListOf<String>()
         try {
-            val lizta = MutableList(lista.size) { 0.0 }
+            val lizta = MutableList(lista.first().size) { 0.0 }
 
 //        for (col in lista) {
 //            for (row in lista.indices) {
@@ -44,7 +44,7 @@ class KalkImpl : KalkInterface {
     ): MutableList<String> {
         val stringovi = mutableListOf<String>()
         try {
-            val lizta = MutableList(lista.size) { 1.0 }
+            val lizta = MutableList(lista.first().size) { 1.0 }
 
             for (row in lista) {
                 for (col in row.indices) {

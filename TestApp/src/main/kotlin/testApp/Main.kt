@@ -2,6 +2,7 @@ package testApp
 
 import org.example.specifikacija.IzvestajInterface
 import java.io.File
+import java.io.FileNotFoundException
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
@@ -34,7 +35,6 @@ fun main(){
     val serviceLoader = ServiceLoader.load(IzvestajInterface::class.java)
 
     val exporterServices = mutableMapOf<String, IzvestajInterface> ()
-   // println(exporterServices.values.toList())
 
     while(true) {
         serviceLoader.forEach { service ->
@@ -51,9 +51,6 @@ fun main(){
             println("Gasenje programa")
             break
         }
-
-        //println("\n Izaberite format: ")
-        //val format = readLine()?.trim()?.uppercase()
 
         println("SQL upit: ")
         val sql = readLine()
@@ -101,15 +98,16 @@ fun main(){
 
         val query = connection?.prepareStatement(sql)
         val resultSet = query?.executeQuery()
-        //C:\Users\ASUS Tuf Gaming\Desktop\SoftKomp\TestApp\src\main\resources\testKalk.txt
-        //C:\Users\ASUS Tuf Gaming\Desktop\SoftKomp\TestApp\src\main\resources\supertest.txt
-        //C:\Users\ASUS Tuf Gaming\Desktop\SoftKomp\TestApp\src\main\resources\testpdf.pdf
-        //C:\Users\ASUS Tuf Gaming\Desktop\SoftKomp\TestApp\src\main\resources\testexel55.XLSX
-        //C:\Users\ASUS Tuf Gaming\Desktop\SoftKomp\TestApp\src\main\resources\TESTSK.JSON
-        //C:\Users\ASUS Tuf Gaming\Desktop\SoftKomp\TestApp\src\main\resources\testFormatPDF.json
-        //C:\Users\ASUS Tuf Gaming\Desktop\SoftKomp\TestApp\src\main\resources\testFormatExcel.json
-        val fajl = File(kalkulacije.toString())
+        var fajl : File
+        try{
+            fajl = File(kalkulacije.toString())
+        }catch (e: FileNotFoundException){
+            fajl = File("C:\\Users\\ASUS Tuf Gaming\\Desktop\\SoftKomp\\TestApp\\src\\main\\resources\\prazanJson.json")
+            println(fajl)
+        }
+
         val formating = File(formatiranje.toString())
+
         println(formating)
         if (resultSet != null) {
             exporterServices[format]?.generisiIzvestaj(resultSet, putanja.toString(), heder?:false, naslov?:"", fajl, formating)
