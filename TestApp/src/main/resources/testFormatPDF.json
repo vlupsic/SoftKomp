@@ -1,0 +1,37 @@
+{
+  "naslov" : {
+    "bold" : true,
+    "italic" : true,
+    "fontSize" : 20,
+    "color" : "Green",
+    "alignment" : "center"
+  },
+  "header" : {
+     "bold": true,
+     "italic": false,
+     "fontSize": 18,
+     "underline": true,
+     "color": "Purple",
+     "alignment": "left",
+     "border": "solid",
+     "borderColor": "Orange",
+     "borderWidth": "5px"
+  },
+  "podaci": {
+     "bold": false,
+     "italic": false,
+     "fontSize": 10,
+     "color": "aquamarine",
+     "alignment": "center",
+     "border": "dotted",
+     "borderColor": "green"
+  },
+  "summary": {
+     "bold": false,
+     "italic": true,
+     "fontSize": 8,
+     "color": "red",
+     "underline": true
+  },
+  "kolone": ["idpesme","streams"]
+}

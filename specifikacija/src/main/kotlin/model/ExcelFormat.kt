@@ -21,11 +21,10 @@ data class ExcelHeader(
     val italic: Boolean,
     val fontSize: Int,
     val underline: Boolean,
-    val color: String,
+    val color: Short,
     val alignment: String,
     val borderStyle: String,
     val borderColor: String,
-    val borderWidth: String
 )
 
 data class ExcelData(
@@ -36,7 +35,6 @@ data class ExcelData(
     val alignment: String,
     val borderStyle: String,
     val borderColor: String,
-    val borderWidth: String
 )
 
 data class ExcelSummary(
@@ -44,5 +42,5 @@ data class ExcelSummary(
     val italic: Boolean,
     val fontSize: Int,
     val color: String,
-    val underline: Boolean,
+    val underline: Byte,
 )

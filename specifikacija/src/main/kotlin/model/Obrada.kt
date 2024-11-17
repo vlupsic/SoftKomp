@@ -3,8 +3,9 @@ package model
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import java.io.File
+import kotlin.system.exitProcess
 
-fun mrtviJson(podaci: MutableMap<String, MutableList<String>>, toParse: File): String{
+internal fun mrtviJson(podaci: MutableMap<String, MutableList<String>>, toParse: File): String{
     val mapper =  jacksonObjectMapper()
     val fajl = mapper.readValue<Kalkulacije>(toParse)
     val KalkInterface = KalkImpl();
@@ -13,7 +14,15 @@ fun mrtviJson(podaci: MutableMap<String, MutableList<String>>, toParse: File): S
 
 
         val naslovKolone = kalkulacijeKolone.naslov;
-        val koloneZaObradu = kalkulacijeKolone.sadrzaj.mapNotNull { podaci[it]?.map {it.toDoubleOrNull()} }
+        var koloneZaObradu: List<List<Double?>>? = null
+        try{
+            koloneZaObradu = kalkulacijeKolone.sadrzaj.mapNotNull { podaci[it]?.map {it.toDoubleOrNull()} }
+        }catch (e:Exception){
+            println("Nema trazene kolone!")
+            e.printStackTrace()
+            exitProcess(1)
+        }
+
         val koef = kalkulacijeKolone.koeficijent?.toIntOrNull();
 
         val novaKolona = when (kalkulacijeKolone.operacija){
@@ -24,7 +33,7 @@ fun mrtviJson(podaci: MutableMap<String, MutableList<String>>, toParse: File): S
             else -> {null}
         }
         if (novaKolona != null) {
-            podaci[novaKolona.keys.toString()] = novaKolona.values.map{ it.toString() }.toMutableList()
+            podaci[naslovKolone.toString()] = novaKolona.map { it.toString() }.toMutableList()
         }
     }
         val bilde = StringBuilder()

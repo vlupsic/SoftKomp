@@ -1,8 +1,15 @@
 package model
 
 data class Kalkulacije (
-    val epilog: List<KalkulacijeEpilog> = emptyList(),
     val kolone: List<KalkulacijeKolona> = emptyList(),
+    val epilog: List<KalkulacijeEpilog> = emptyList()
+)
+
+data class KalkulacijeKolona(
+    val naslov: String? = null,
+    val operacija: String? = null,
+    val koeficijent: String? = null,
+    val sadrzaj: List<String>
 )
 
 data class KalkulacijeEpilog(
@@ -15,9 +22,3 @@ data class KalkulacijeEpilog(
     val koeficijent: String? = null,
 )
 
-data class KalkulacijeKolona(
-    val naslov: String? = null,
-    val operacija: String? = null,
-    val koeficijent: String? = null,
-    val sadrzaj: List<String>
-)

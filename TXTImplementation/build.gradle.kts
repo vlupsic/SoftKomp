@@ -15,7 +15,6 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     implementation(project(":specifikacija"))
-    implementation(project(":kalkulacije"))
 }
 
 tasks.test {
